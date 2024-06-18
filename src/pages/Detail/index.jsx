@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { wordlResult } from "../../Data/wordResult";
 
 const Detail = () => {
+  const { id } = useParams();
+  const [wordInfo, setWordInfo] = useState(null);
+
+  useEffect(() => {
+    const foundWord = wordlResult.words.find((wordObj) => wordObj.단어 === id);
+    setWordInfo(foundWord);
+  }, [id]);
+
+  if (!wordInfo) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <S.Layout>
       <S.Header>
-        <S.Word>Hello</S.Word>
+        <S.Word>{wordInfo.단어}</S.Word>
         <a
-          href="https://www.google.com"
+          href={`https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${wordInfo.단어}`}
           style={{ textDecorationColor: "#3cb371" }}
           target="_blank"
           rel="noopener noreferrer"
@@ -19,15 +32,27 @@ const Detail = () => {
       <ul>
         <S.Line>
           <S.Key>정의:</S.Key>
-          <S.Value>an expression of greeting</S.Value>
+          <S.Value>{wordInfo.단어}</S.Value>
         </S.Line>
         <S.Line>
-          <S.Key>정의:</S.Key>
-          <S.Value>an expression of greeting</S.Value>
+          <S.Key>품사:</S.Key>
+          <S.Value>{wordInfo.품사}</S.Value>
         </S.Line>
         <S.Line>
-          <S.Key>정의:</S.Key>
-          <S.Value>an expression of greeting</S.Value>
+          <S.Key>동의어:</S.Key>
+          <S.Value>{wordInfo.동의어}</S.Value>
+        </S.Line>
+        <S.Line>
+          <S.Key>관련어:</S.Key>
+          <S.Value>{wordInfo.관련어}</S.Value>
+        </S.Line>
+        <S.Line>
+          <S.Key>파생어:</S.Key>
+          <S.Value>{wordInfo.파생어}</S.Value>
+        </S.Line>
+        <S.Line>
+          <S.Key>예문:</S.Key>
+          <S.Value>{wordInfo.예문}</S.Value>
         </S.Line>
       </ul>
     </S.Layout>

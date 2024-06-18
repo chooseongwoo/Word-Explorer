@@ -24,7 +24,7 @@ const Main = () => {
         history("detail/" + word);
         setWord("");
       } else {
-        alert("영단어를 입력해주세요.");
+        alert("단어를 입력해주세요.");
       }
     }
   };
@@ -40,7 +40,7 @@ const Main = () => {
             <S.SearchBar
               value={word}
               type="text"
-              placeholder="영단어를 입력하세요."
+              placeholder="단어를 입력하세요."
               onChange={(e) => {
                 setWord(e.target.value);
               }}

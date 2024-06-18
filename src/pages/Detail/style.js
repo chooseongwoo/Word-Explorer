@@ -32,10 +32,10 @@ export const Line = styled.li`
 
 export const Key = styled.p`
   color: blue;
-  font-size: 25px;
+  font-size: 20px;
 `;
 
 export const Value = styled.p`
-  font-size: 25px;
+  font-size: 24px;
   color: red;
 `;
