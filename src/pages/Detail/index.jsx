@@ -25,13 +25,12 @@ const Detail = () => {
           style={{ textDecorationColor: "#3cb371" }}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${wordInfo.단어}에 대해 더 자세히 알아보기`}
         >
           <S.WordSearch>{"<"}- 더 자세히 알아보기</S.WordSearch>
         </a>
       </S.Header>
       <ul>
-        <S.Line>
-        </S.Line>
         <S.Line>
           <S.Key>품사:</S.Key>
           <S.Value>{wordInfo.품사}</S.Value>

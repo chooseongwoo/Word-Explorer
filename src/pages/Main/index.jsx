@@ -17,6 +17,12 @@ const Main = () => {
   const onPressedEnter = (e) => {
     if (e.key === "Enter") {
       if (word) {
+        const koreanRegex = /^[가-힣]+$/;
+        if (!koreanRegex.test(word)) {
+          alert("한글만 입력 가능합니다.");
+          return;
+        }
+
         const newWords = [...recentWords, word];
         setRecentWords(newWords);
         localStorage.setItem("words", JSON.stringify({ words: newWords }));
@@ -50,12 +56,24 @@ const Main = () => {
                 setWord(e.target.value);
               }}
               onKeyDown={onPressedEnter}
+              aria-label="단어 검색"
             />
             <S.Recent>
               <S.RecentTitle>최근 검색 단어</S.RecentTitle>
               <S.RecentWords>
                 {recentWords.map((word, index) => (
-                  <S.RecentWord key={index} onClick={() => onWordClick(word)}>
+                  <S.RecentWord
+                    key={index}
+                    onClick={() => onWordClick(word)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        onWordClick(word);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`최근 검색 단어: ${word}`}
+                  >
                     {word}
                   </S.RecentWord>
                 ))}
