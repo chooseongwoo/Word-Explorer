@@ -13,7 +13,7 @@ const Detail = () => {
   }, [id]);
 
   if (!wordInfo) {
-    return <div>Loading...</div>;
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -31,8 +31,6 @@ const Detail = () => {
       </S.Header>
       <ul>
         <S.Line>
-          <S.Key>정의:</S.Key>
-          <S.Value>{wordInfo.단어}</S.Value>
         </S.Line>
         <S.Line>
           <S.Key>품사:</S.Key>
