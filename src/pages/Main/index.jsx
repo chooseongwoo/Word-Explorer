@@ -28,6 +28,11 @@ const Main = () => {
       }
     }
   };
+
+  const onWordClick = (word) => {
+    history("detail/" + word);
+  };
+
   return (
     <S.Layout>
       <S.Content>
@@ -49,8 +54,10 @@ const Main = () => {
             <S.Recent>
               <S.RecentTitle>최근 검색 단어</S.RecentTitle>
               <S.RecentWords>
-                {recentWords.map((word) => (
-                  <S.RecentWord>{word}</S.RecentWord>
+                {recentWords.map((word, index) => (
+                  <S.RecentWord key={index} onClick={() => onWordClick(word)}>
+                    {word}
+                  </S.RecentWord>
                 ))}
               </S.RecentWords>
             </S.Recent>
